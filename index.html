@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!-- Déclaration du type de document HTML5 -->
+<html lang="fr">
+<!-- Balise principale HTML avec langue française -->
+<head>
+    <!-- Section d'en-tête avec métadonnées -->
+    <meta charset="UTF-8">
+    <!-- Encodage des caractères (nécessaire pour les accents français) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Responsive : s'adapte à la taille de l'écran (mobile, tablette, desktop) -->
+    <title>Mini Inventaire de Produits</title>
+    <!-- Titre qui apparaît dans l'onglet du navigateur -->
+    
+    <!-- Bootstrap 5 CSS - Lien vers le fichier CSS de Bootstrap depuis internet -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Corps de la page - tout le contenu visible -->
+    
+    <!-- Container Bootstrap : centre le contenu et ajoute des marges automatiques -->
+    <div class="container mt-5">
+        <!-- mt-5 = margin-top (marge en haut) de niveau 5 en Bootstrap -->
+        
+        <!-- Titre principal de la page -->
+        <h1 class="text-center mb-4">Mini Inventaire de Produits</h1>
+        <!-- text-center = centre le texte, mb-4 = margin-bottom (marge en bas) niveau 4 -->
+        
+        <!-- Carte Bootstrap pour le formulaire d'ajout -->
+        <div class="card mb-4">
+            <!-- card = style de carte Bootstrap, mb-4 = marge en bas -->
+            <div class="card-header bg-primary text-white">
+                <!-- card-header = en-tête de la carte, bg-primary = fond bleu, text-white = texte blanc -->
+                <h5 class="mb-0">Ajouter un nouveau produit</h5>
+                <!-- mb-0 = pas de marge en bas -->
+            </div>
+            <div class="card-body">
+                <!-- card-body = corps de la carte (contenu principal) -->
+                
+                <!-- Formulaire pour ajouter un produit -->
+                <form id="formProduit">
+                    <!-- id="formProduit" = identifiant unique pour accéder au formulaire en JavaScript -->
+                    
+                    <!-- Row Bootstrap : crée une ligne pour organiser les colonnes -->
+                    <div class="row">
+                        <!-- Première colonne : Nom du produit -->
+                        <div class="col-md-4 mb-3">
+                            <!-- col-md-4 = colonne de largeur 4/12 sur écran moyen et plus, mb-3 = marge en bas -->
+                            <label for="nomProduit" class="form-label">Nom du produit</label>
+                            <!-- label = étiquette du champ, for="nomProduit" = lié au champ avec cet id -->
+                            <input type="text" class="form-control" id="nomProduit" required>
+                            <!-- type="text" = champ texte, form-control = style Bootstrap, id="nomProduit" = identifiant, required = obligatoire -->
+                        </div>
+                        
+                        <!-- Deuxième colonne : Prix -->
+                        <div class="col-md-4 mb-3">
+                            <label for="prixProduit" class="form-label">Prix (CAD)</label>
+                            <input type="number" class="form-control" id="prixProduit" step="0.01" min="0" required>
+                            <!-- type="number" = champ numérique, step="0.01" = permet les décimales (centimes), min="0" = minimum 0 -->
+                        </div>
+                        
+                        <!-- Troisième colonne : Quantité -->
+                        <div class="col-md-4 mb-3">
+                            <label for="quantiteProduit" class="form-label">Quantité</label>
+                            <input type="number" class="form-control" id="quantiteProduit" min="0" required>
+                            <!-- min="0" = quantité ne peut pas être négative -->
+                        </div>
+                    </div>
+                    <!-- Fin de la row -->
+                    
+                    <!-- Bouton de soumission du formulaire -->
+                    <button type="submit" class="btn btn-primary">Ajouter le produit</button>
+                    <!-- type="submit" = soumet le formulaire, btn btn-primary = style bouton bleu Bootstrap -->
+                </form>
+            </div>
+        </div>
+        <!-- Fin de la carte formulaire -->
+        
+        <!-- Carte Bootstrap pour le tableau des produits -->
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <!-- bg-success = fond vert pour différencier de la première carte -->
+                <h5 class="mb-0">Liste des produits</h5>
+            </div>
+            <div class="card-body">
+                <!-- table-responsive = rend le tableau scrollable sur petits écrans -->
+                <div class="table-responsive">
+                    <!-- Tableau Bootstrap -->
+                    <table class="table table-striped table-hover">
+                        <!-- table = style tableau Bootstrap, table-striped = lignes alternées, table-hover = effet au survol -->
+                        <thead>
+                            <!-- En-tête du tableau -->
+                            <tr>
+                                <!-- tr = table row (ligne de tableau) -->
+                                <th>Nom</th>
+                                <!-- th = table header (cellule d'en-tête en gras) -->
+                                <th>Prix</th>
+                                <th>Quantité</th>
+                                <th>Valeur totale</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableauProduits">
+                            <!-- tbody = corps du tableau, id="tableauProduits" = identifiant pour ajouter les produits en JavaScript -->
+                            <!-- Les produits seront ajoutés ici dynamiquement par JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Fin de la carte tableau -->
+        
+        <!-- Carte Bootstrap pour la valeur totale -->
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <!-- bg-info = fond bleu clair -->
+                <h5 class="mb-0">Valeur totale de l'inventaire</h5>
+            </div>
+            <div class="card-body">
+                <!-- h3 = titre de niveau 3, text-center = centré, id="valeurTotale" = identifiant pour mettre à jour en JavaScript -->
+                <h3 class="text-center" id="valeurTotale">0,00 $ CAD</h3>
+                <!-- Valeur par défaut affichée -->
+            </div>
+        </div>
+        <!-- Fin de la carte valeur totale -->
+    </div>
+    <!-- Fin du container -->
+    
+    <!-- Scripts JavaScript à la fin du body (meilleure pratique) -->
+    
+    <!-- Bootstrap 5 JS - Nécessaire pour certaines fonctionnalités Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Notre fichier JavaScript personnalisé -->
+    <script src="script.js"></script>
+    <!-- Ce script contiendra toute notre logique JavaScript -->
+</body>
+</html>
+
